@@ -1,6 +1,9 @@
-<html><head>
+<html>
+<head>
     <title>Inference Example</title>
 	<meta name="robots" content="noindex">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
@@ -9,45 +12,53 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.6/tailwind.min.css" rel="stylesheet">
 
     <style type="text/css">
+		
 
     </style>
 
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
-<link href="/infer.css" rel="stylesheet"></head>
-<link rel="stylesheet" type="text/css" href="infer.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+	<link href="/infer.css" rel="stylesheet"></head>
+	<link rel="stylesheet" type="text/css" href="infer.css">
 
 <body>
 <form id="inputForm">
     <div class="header">
-        <div class="header__grid">
-            <img class="header__logo" src="https://scontent.fbkk22-1.fna.fbcdn.net/v/t1.15752-9/373470871_1314784856100021_6714859379756970202_n.png?_nc_cat=100&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeG0xf0cvV0y1RwZMJCbsufhzwO1bSVlLEjPA7VtJWUsSM9nc-uLsAu_R6HqVcSxZQnHexYpODZKZ0G7bbEH8Xpp&_nc_ohc=ZBqLxxQdRfMAX9a2jea&_nc_ht=scontent.fbkk22-1.fna&oh=03_AdQQW0-cjdNiNC5fbfnkPY1WF4qjKbEvxM8VSotRTI5b_g&oe=651E5EBB" alt="Roboflow Inference">
-            <div>
-                <label id="model" class="header__label" for="cirtus01"></label>
+        <div class="header__grid" >
+            <img  class="header__logo" src="https://scontent.fbkk22-2.fna.fbcdn.net/v/t1.15752-9/398370155_382990947484800_8126688521782629395_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8cd0a2&_nc_eui2=AeFcePh5CcvKWc7tL2-P-xxx_HRMsg-bf8X8dEyyD5t_xc_Ofl09XNiYAVKOUhlghA5YbSVIRR6zazAMG8FrtP5T&_nc_ohc=b1oF2ss1dmUAX8qzy7s&_nc_ht=scontent.fbkk22-2.fna&oh=03_AdSPWCtgtl8a8qxVQLkV7GFl0QWpeVl_1lcXSwPZk2nLHw&oe=658E845B" alt="Roboflow Inference">
+            <div style="display: none;">
+                <label class="header__label" for="model">Model</label>
+                <input class="input" type="text" id="model">
             </div>
-            <div>
-                <label id="version" class="header__label" for="2"></label>
+            <div style="display: none;">
+                <label class="header__label" for="version">Version</label>
+                <input class="input" type="number" id="version">
             </div>
-            <div>
-                <label id="api_key" class="header__label" for="Ly3EiruZdi4S55ivwSe1"></label> 	
+            <div style="display: none;">
+                <label class="header__label" for="api_key" style="display: none;">API Key</label>
+                <input class="input" type="text" id="api_key" style="display: none;">
             </div>
         </div>
     </div>
 
     <div class="content">
         <div class="content__grid">
+			<!-- กล้อง -->
             <div class="col-12-s6-m4" id="method">
                 <label class="input__label">Upload Method</label>
                 <div>
-                    <button data-value="upload" id="computerButton" class="bttn left fill active">Upload</button>
+					<!-- display none ได้ -->
+                    <button data-value="upload" id="computerButton" class="bttn left fill active" style="display: none;">Upload</button> 			
+					
                     <button data-value="url" id="goToHTML2" class="bttn right fill">Camera</button>
                 </div>
             </div>
-
+			<!-- แกล -->
             <div class="col-12-m8" id="fileSelectionContainer">
                 <label class="input__label" for="file">Select File</label>
                 <div class="flex">
-                    <input class="input input--left flex-1" type="text" id="fileName" disabled="">
+					<!-- display none ได้ -->
+                    <input class="input input--left flex-1" type="text" id="fileName" disabled="" style="display: none;">
                     <button id="fileMock" class="bttn right active">Browse</button>
                 </div>
                 <input style="display: none;" type="file" id="file">
@@ -56,43 +67,52 @@
             <div class="col-12-m8" id="urlContainer">
                     <a href="camera.html"></a>
             </div>
-            <div class="col-6-m3" id="format">
-                <label class="input__label">Inference Result</label>
-                <div>
-                    <button id="imageButton" data-value="image" class="bttn left fill active">Image</button>
-                    <button id="jsonButton" data-value="json" class="bttn right fill">JSON</button>
-                </div>
-            </div>
-            <div class="col-12 content__grid" id="imageOptions">
-                <div class="col-12-s6-m4" id="labels">
-                    <label class="input__label">Labels</label>
-                    <div>
-                        <button class="bttn left">Off</button>
-                        <button data-value="on" class="bttn right active">On</button>
-                    </div>
-                </div>
-                <div class="col-12-s6-m4" id="stroke">
-                    <label class="input__label">Stroke Width</label>
-                    <div>
-                        <button data-value="1" class="bttn left">1px</button>
-                        <button data-value="2" class="bttn active">2px</button>
-                        <button data-value="5" class="bttn">5px</button>
-                        <button data-value="10" class="bttn right">10px</button>
-                    </div>
-                </div>
-            </div>
+
+			<!-- none อย่าไปยุ่ง! -->
+
+			<div style="display: none;">
+				<div class="col-6-m3" id="format">
+					<label class="input__label">Inference Result</label>
+					<div>
+						<button id="imageButton" data-value="image" class="bttn left fill active">Image</button>
+						<button id="jsonButton" data-value="json" class="bttn right fill">JSON</button>
+					</div>
+				</div>
+				<div class="col-12 content__grid" id="imageOptions">
+					<div class="col-12-s6-m4" id="labels">
+						<label class="input__label">Labels</label>
+						<div>
+							<button class="bttn left">Off</button>
+							<button data-value="on" class="bttn right active">On</button>
+						</div>
+					</div>
+					<div class="col-12-s6-m4" id="stroke">
+						<label class="input__label">Stroke Width</label>
+						<div>
+							<button data-value="1" class="bttn left">1px</button>
+							<button data-value="2" class="bttn active">2px</button>
+							<button data-value="5" class="bttn">5px</button>
+							<button data-value="10" class="bttn right">10px</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- submit btn -->
             <div class="col-12">
                 <button type="submit" value="Run Inference" class="bttn__primary">Run Inference</button>
             </div>
+
         </div>
+
+		<!-- result of detect -->
         <div class="result" id="resultContainer">
-            <div class="divider"></div>
             <div class="result__header">
                 <h3 class="headline">Result</h3>
-                
             </div>
             <pre id="output" class="codeblock"> here is your json </pre>
         </div>
+
     </div>
 </form>
 
@@ -107,7 +127,7 @@ $(function() {
 });
 
 var infer = function() {
-	$('#output').html("Inferring...");
+	$('#output').html("โปรดรอซักครู่ ระบบกำลังตรวจสอบ..");
 	$("#resultContainer").show();
 	$('html').scrollTop(100000);
 
@@ -350,6 +370,7 @@ const button = document.getElementById('goToHTML2');
 }
 </style>
 
+<a href="https://codepen.io/roboflow/pen/VwaKXdM" style="display: none;" target="_blank" id="codepenLink"><img src="https://i.imgur.com/Q1vOZ48.png"></a>
 
 <script src="/infer.e52137ed1b27e0a86d5a.js"></script>
 
