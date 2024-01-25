@@ -116,7 +116,7 @@ body {
 .content {
     max-width: 600px; /* กำหนดความกว้างสูงสุดของกรอบ Inference */
     margin: auto; /* จัดให้กรอบอยู่ตรงกลางของหน้าจอ */
-    padding: 20px; /* ระยะห่างของเนื้อหากับกรอบ Inference */
+    
     border: 2px solid #fd8700; /* สีขอบกรอบ Inference */
     border-radius: 10px; /* ความโค้งขอบกรอบ Inference */
     background-color: #fff; /* สีพื้นหลังของกรอบ Inference */
